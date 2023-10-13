@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --light-color: rgb(222, 222, 222);
+  --dark-bg-color: #4b4a53;
+  --book-bg-color: #decec1;
+  --book-secondary-color: #64656e; 
+  --dark-text-color: black;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  background-color: var(--dark-bg-color);
+  color: var(--dark-text-color);
+}
+
+h1, h2, h3, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Center content on the page */
+body {
+  display: grid;
+  grid-template-rows: 100vh;
+  grid-template-columns: 100vw;
+  place-items: center;
+}
+
+.container {
+  /* border: 3px dashed gray; */
+  width: 60vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 48px;
+  color: var(--light-color);
+  padding-bottom: 24px;
+}
+
+.outer {
+  background-color: var(--light-color);
+  box-shadow: 3px 3px 10px rgb(0, 0, 0);
+  border-radius: 36px;
+  flex-grow: 1;
+  overflow: hidden;
+  padding-right: 10px;
+}
+
+.card-container {
+  /* border: 3px solid magenta; */
+  overflow-y: auto;
+  height: calc(100% - 80px);
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 250px);
+  grid-template-rows: 300px;
+  grid-auto-rows: 300px;
+  gap: 24px;
+}
+
+.card {
+  /* border: 2px solid blue; */
+  border-radius: 24px;
+}
+
+.card.placeholder {
+  --gray-color: rgb(165, 165, 165);
+  border: 2px dashed var(--gray-color);
+  display: grid;
+  place-items: center;
+}
+
+.card.placeholder > div {
+  padding: 0px 14px;
+  font-size: 48px;
+  color: var(--gray-color);
+  border: 2px solid var(--gray-color);
+  border-radius: 30px;
+}
+
+.card.book {
+  background-color: var(--book-bg-color);
+  box-shadow: 2px 2px 6px rgb(106, 106, 106);
+  color: var(--dark-text-color);
+  border-left: 36px solid var(--book-secondary-color);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  position: relative;
+  padding: 48px 20px;
+  padding-bottom: 16px;
+}
+
+.book > .title,
+.book > .author {
+  text-align: center;
+}
+
+.book > .author {
+  flex-grow: 1;
+}
+
+.book > .pages {
+  align-self: start;
+}
+
+.book.is-read .read-container {
+  border-radius: 24px 0 24px 0;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  background: linear-gradient(to bottom right, #d4c5b8 50%, #d1d1c8 50%);
+}
+
+.book.is-read .read-container::after {
+  position: absolute;
+  content: "✔︎";
+  font-size: 24px;
+  bottom: 15%;
+  right: 20%;
+}
+
+/* .book:not(.is-read) .read-container {
+  visibility: hidden;
+} */
+

@@ -20,11 +20,15 @@ function addBookToLibrary(title, author, pages, isRead) {
 function addBookToDisplay(book){
     let card = document.createElement("div");
     card.classList.add('card');
+    card.classList.add('book');
+    if (book.isRead) {
+        card.classList.add('is-read');
+    }
     card.innerHTML = `
-        <h2>${book.title}</h2>
-        <h3>Author: ${book.author}</h3>
-        <p>Pages: ${book.pages}</p>
-        <p>Read by you: ${book.isRead ? "Yes" : "No"}
+        <h2 class="title">${book.title}</h2>
+        <h3 class="author">by ${book.author}</h3>
+        <p class="pages">Pages: ${book.pages}</p>
+        <div class="read-container"></div>
     `;
     cardContainer.appendChild(card);
 }
@@ -34,7 +38,7 @@ function displayAllBooks(library) {
 }
 
 addBookToLibrary('good book', 'good author', 10, true);
-addBookToLibrary('okay book', 'okay author', 100, true);
+addBookToLibrary('okay book with a long ass title freal', 'okay author', 100, true);
 addBookToLibrary('bad book', 'bad author', 1000, false);
 addBookToLibrary('awful book', 'awful author', 10000, false);
 
