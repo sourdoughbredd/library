@@ -131,7 +131,6 @@ h1 {
 
 .book > .actions-container {
   position: absolute;
-  border: 2px solid blue;
   display: flex;
   flex-direction: column;
   gap: 20px;
