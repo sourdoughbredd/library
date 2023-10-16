@@ -129,7 +129,28 @@ h1 {
   right: 20%;
 }
 
-/* .book:not(.is-read) .read-container {
+.book > .actions-container {
+  position: absolute;
+  border: 2px solid blue;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  top: 25%;
+}
+
+.actions-container button {
+  height: 60px;
+  width: 170px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.book:hover .actions-container {
+  visibility: visible;
+}
+
+.book:not(:hover) .actions-container {
   visibility: hidden;
-} */
+}
 
