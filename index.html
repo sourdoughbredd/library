@@ -15,18 +15,35 @@
           <div>+</div>
         </div>
       </div>
-    </div>
-    <div class="form-container">
-      <form action="" method="post">
-        <label for="title-in">Book Title</label>
-        <input type="text" name="title" id="title-in">
-        <label for="author-in">Author</label>
-        <input type="text" name="author" id="author-in">
-        <label for="pages-in">Number of Pages</label>
-        <input type="number" name="pages" id="pages-in">
-        <label for="is-read-in">Check if you have read this book</label>
-        <input type="checkbox" name="isRead" id="is-read-in">
-      </form>
+      <div class="form-container hidden">
+        <form class="add-book-form">
+          <h2>Book Info</h2>
+          <div class="title-container">
+            <label for="title-in">Title</label>
+            <input type="text" name="title" id="title-in" required>
+          </div>
+          <div class="author-container">
+            <label for="author-in">Author</label>
+            <input type="text" name="author" id="author-in" required>
+          </div>
+          <div class="pages-read">
+            <div class="pages-container">
+              <label for="pages-in">Pages</label>
+              <input type="number" name="pages" id="pages-in" required>
+            </div>
+            <div class="read-container">
+              <!-- Rounded switch -->
+              <div>Unread</div>
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
+              <div>Read</div>
+            </div>
+          </div>
+          <input class="submit-button" type="submit" value="Add to Library">
+        </form>
+      </div>
     </div>
   </div>
 </body>

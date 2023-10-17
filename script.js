@@ -1,5 +1,6 @@
 const cardContainer = document.querySelector(".card-container");
 const addBookBtn = document.querySelector('.placeholder > div');
+const addBookForm = document.querySelector('.form-container');
 
 let myLibrary = [];
 let nextId = 0;
@@ -73,7 +74,7 @@ function toggleReadBtnPressed(bookDiv, book) {
     }
 }
 
-addBookBtn.addEventListener('click', () => console.log('CLICKY'));
+addBookBtn.addEventListener('click', () => addBookForm.classList.remove('hidden'));
 
 addBookToLibrary('good book', 'good author', 10, true);
 addBookToLibrary('okay book with a long ass title freal', 'okay author', 100, true);

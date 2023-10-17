@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 :root {
+  --container-width: 60vw;
+  --container-height: 70vh;
   --light-color: rgb(222, 222, 222);
   --dark-bg-color: #4b4a53;
   --book-bg-color: #decec1;
   --book-secondary-color: #64656e; 
   --dark-text-color: black;
+  /* --btn-color: rgb(93, 117, 108); */
+  --btn-color: rgb(78, 29, 29);
 }
 
 body {
@@ -30,8 +34,8 @@ body {
 
 .container {
   /* border: 3px dashed gray; */
-  width: 60vw;
-  height: 70vh;
+  width: var(--container-width);
+  height: var(--container-height);
   display: flex;
   flex-direction: column;
 }
@@ -42,6 +46,17 @@ h1 {
   padding-bottom: 24px;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
+input[type=submit], button {
+  background-color: var(--btn-color);
+  color: var(--light-color);
+  border: none;
+  box-shadow: 1px 1px 4px rgb(30, 30, 30);
+}
+
 .outer {
   background-color: var(--light-color);
   box-shadow: 3px 3px 10px rgb(0, 0, 0);
@@ -49,6 +64,7 @@ h1 {
   flex-grow: 1;
   overflow: hidden;
   padding-right: 10px;
+  position: relative; /* for form positioning (see bottom) */
 }
 
 .card-container {
@@ -150,10 +166,151 @@ h1 {
 }
 
 .book:hover .actions-container {
-  visibility: visible;
+  display: visible;
 }
 
 .book:not(:hover) .actions-container {
   visibility: hidden;
 }
 
+/* Add book form */
+
+.form-container {
+  --form-width: clamp(200px, 40%, 420px);
+  --form-height: clamp(200px, 60%, 320px);
+  /* border: 2px solid magenta; */
+  border-radius: 10px;
+  background-color: var(--dark-bg-color);
+  opacity: 0.95;
+  color: var(--light-color);
+  box-shadow: 3px 3px 8px rgb(128, 128, 128);
+  position: absolute;
+  width: var(--form-width);
+  top: calc(45% - 0.5*var(--form-height));
+  left: calc(50% - 0.5*var(--form-width));
+  padding: 30px;
+}
+
+.add-book-form {
+  /* border: 2px dashed black; */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-size: 20px;
+}
+
+.add-book-form input[type=text],
+.add-book-form input[type=number] {
+  height: 30px;
+  border-radius: 20px;
+  font-size: 20px;
+  color: var(--dark-text-color);
+  background-color: var(--light-color);
+  padding: 3px 16px;
+}
+
+.title-container,
+.author-container{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pages-read {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 24px 12px;
+}
+
+.pages-container {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+}
+
+.pages-container input {
+  width: 60px;
+}
+
+.submit-button {
+  width: 200px;
+  height: 40px;
+  border-radius: 20px;
+  align-self: center;
+  font-size: 18px;
+  margin-top: 12px;
+}
+
+
+/* SLIDER SWITCH */
+
+.read-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
