@@ -1,4 +1,5 @@
 const cardContainer = document.querySelector(".card-container");
+const addBookBtn = document.querySelector('.placeholder > div');
 
 let myLibrary = [];
 let nextId = 0;
@@ -22,6 +23,10 @@ function addBookToLibrary(title, author, pages, isRead) {
     addBookToDisplay(book);
 }
 
+function displayAllBooks() {
+    myLibrary.forEach(book => addBookToDisplay(book));
+}
+
 function addBookToDisplay(book){
     let card = document.createElement("div");
     card.classList.add('card');
@@ -34,7 +39,7 @@ function addBookToDisplay(book){
     card.innerHTML = `
         <h2 class="title">${book.title}</h2>
         <h3 class="author">by ${book.author}</h3>
-        <p class="pages">Pages: ${book.pages}</p>
+        <p class="pages">Pages:  ${book.pages}</p>
         <div class="read-container"></div>
         <div class="actions-container"> 
             <button class="remove-book"${book.id.toString()}">Remove from Library</button>
@@ -44,23 +49,19 @@ function addBookToDisplay(book){
     cardContainer.appendChild(card);
 
     // bookCards.push(card);
-    toggleReadButton = card.querySelector('.toggle-read');
-    removeBookButton = card.querySelector('.remove-book');
+    toggleReadBtn = card.querySelector('.toggle-read');
+    removeBookBtn = card.querySelector('.remove-book');
 
-    toggleReadButton.addEventListener('click', () => toggleReadButtonPressed(card, book));
-    removeBookButton.addEventListener('click', () => removeBookButtonPressed(card, book));
+    toggleReadBtn.addEventListener('click', () => toggleReadBtnPressed(card, book));
+    removeBookBtn.addEventListener('click', () => removeBookBtnPressed(card, book));
 }
 
-function displayAllBooks(library) {
-    myLibrary.forEach(book => addBookToDisplay(book));
-}
-
-function removeBookButtonPressed(bookDiv, book) {
+function removeBookBtnPressed(bookDiv, book) {
     bookDiv.remove();
     myLibrary = myLibrary.filter(b => b.id != book.id);
 }
 
-function toggleReadButtonPressed(bookDiv, book) {
+function toggleReadBtnPressed(bookDiv, book) {
     if (book.isRead) {
         bookDiv.classList.remove('is-read');
         book.isRead = false;
@@ -72,11 +73,9 @@ function toggleReadButtonPressed(bookDiv, book) {
     }
 }
 
+addBookBtn.addEventListener('click', () => console.log('CLICKY'));
+
 addBookToLibrary('good book', 'good author', 10, true);
 addBookToLibrary('okay book with a long ass title freal', 'okay author', 100, true);
 addBookToLibrary('bad book', 'bad author', 1000, false);
 addBookToLibrary('awful book', 'awful author', 10000, false);
-
-
-
-
