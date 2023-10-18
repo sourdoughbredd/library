@@ -3,6 +3,7 @@ const cardContainer = document.querySelector(".card-container");
 const addBookBtn = document.querySelector('.placeholder > div');
 const addBookFormContainer = document.querySelector('.form-container');
 const submitBookBtn = document.querySelector('input[type=submit]');
+const closeFormBtn = document.querySelector('.close-button');
 
 // Storage vars
 let myLibrary = [];
@@ -102,7 +103,12 @@ function submitBookBtnPressed(event) {
     // Add book to library
     addBookToLibrary(title, author, pages, isRead);
     resetAddBookForm();
-    // event.preventDefault(); // Prevent default behavior of submit button (refreshes page)
+    enableCardContainer();
+}
+
+// Callback fucntion when user presses close button on add book form
+function closeFormBtnPressed() {
+    resetAddBookForm();
     enableCardContainer();
 }
 
@@ -125,3 +131,4 @@ function disableCardContainer(){
 // Event listeners for the add book form buttons
 addBookBtn.addEventListener('click', addBookBtnPressed);
 submitBookBtn.addEventListener('click', submitBookBtnPressed);
+closeFormBtn.addEventListener('click', closeFormBtnPressed);

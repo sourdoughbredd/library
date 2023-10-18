@@ -33,7 +33,6 @@ body {
 }
 
 .container {
-  /* border: 3px dashed gray; */
   width: var(--container-width);
   height: var(--container-height);
   display: flex;
@@ -45,6 +44,8 @@ h1 {
   color: var(--light-color);
   padding-bottom: 24px;
 }
+
+/* Interaction */
 
 .hidden {
   visibility: hidden;
@@ -61,6 +62,14 @@ input[type=submit], button {
   border: none;
   box-shadow: 1px 1px 4px rgb(30, 30, 30);
 }
+
+input[type=submit]:active, 
+button:active,
+.close-button:active {
+  transform: scale(0.95);
+}
+
+/* Main Styling */
 
 .outer {
   background-color: var(--light-color);
@@ -197,6 +206,29 @@ input[type=submit], button {
   top: calc(45% - 0.5*var(--form-height));
   left: calc(50% - 0.5*var(--form-width));
   padding: 30px;
+}
+
+.close-button {
+  font-size: 20px;
+  color: rgb(113, 0, 0);
+  text-align: center;
+  background-color: rgb(210, 1, 1);
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  position: absolute;
+  top: 7.8%;
+  right: 5%;
+}
+
+.close-button:not(:active):hover {
+  cursor: pointer;
+  color: white;
+  transform: scale(1.1);
+}
+
+.close-button:active {
+  color: white;
 }
 
 .add-book-form {
