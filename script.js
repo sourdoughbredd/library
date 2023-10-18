@@ -1,6 +1,7 @@
 const cardContainer = document.querySelector(".card-container");
 const addBookBtn = document.querySelector('.placeholder > div');
-const addBookForm = document.querySelector('.form-container');
+const addBookFormContainer = document.querySelector('.form-container');
+const submitBookBtn = document.querySelector('input[type=submit]');
 
 let myLibrary = [];
 let nextId = 0;
@@ -22,10 +23,6 @@ function addBookToLibrary(title, author, pages, isRead) {
     nextId += 1;
     myLibrary.push(book);
     addBookToDisplay(book);
-}
-
-function displayAllBooks() {
-    myLibrary.forEach(book => addBookToDisplay(book));
 }
 
 function addBookToDisplay(book){
@@ -74,9 +71,29 @@ function toggleReadBtnPressed(bookDiv, book) {
     }
 }
 
-addBookBtn.addEventListener('click', () => addBookForm.classList.remove('hidden'));
+function submitBookBtnPressed(event) {
+    // Collect form info
+    title = addBookFormContainer.querySelector('#title-in').value;
+    author = addBookFormContainer.querySelector('#author-in').value;
+    pages = addBookFormContainer.querySelector('#pages-in').value;
+    isRead = addBookFormContainer.querySelector('#is-read-in').checked;
+    // Add book to library
+    addBookToLibrary(title, author, pages, isRead);
+    // Reset and hide the form
+    resetAddBookForm();
+    // Prevent default behavior of submit button (refreshes page)
+    event.preventDefault();
+}
 
-addBookToLibrary('good book', 'good author', 10, true);
-addBookToLibrary('okay book with a long ass title freal', 'okay author', 100, true);
-addBookToLibrary('bad book', 'bad author', 1000, false);
-addBookToLibrary('awful book', 'awful author', 10000, false);
+function resetAddBookForm() {
+    addBookFormContainer.querySelector('form').reset();
+    addBookFormContainer.classList.add('hidden');
+}
+
+addBookBtn.addEventListener('click', () => addBookFormContainer.classList.remove('hidden'));
+submitBookBtn.addEventListener('click', submitBookBtnPressed);
+
+// addBookToLibrary('good book', 'good author', 10, true);
+// addBookToLibrary('okay book with a long ass title freal', 'okay author', 100, true);
+// addBookToLibrary('bad book', 'bad author', 1000, false);
+// addBookToLibrary('awful book', 'awful author', 10000, false);
