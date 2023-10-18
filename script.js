@@ -102,3 +102,6 @@ function resetAddBookForm() {
 // Event listeners for the add book form buttons
 addBookBtn.addEventListener('click', () => addBookFormContainer.classList.remove('hidden'));
 submitBookBtn.addEventListener('click', submitBookBtnPressed);
+
+addBookToLibrary('asdda', 'asdasd', 100, true);
+addBookToLibrary('asdda', 'asdasd', 100, false);
