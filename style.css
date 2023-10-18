@@ -9,7 +9,7 @@
   --book-secondary-color: #64656e; 
   --dark-text-color: black;
   /* --btn-color: rgb(93, 117, 108); */
-  --btn-color: rgb(78, 29, 29);
+  --btn-color: rgb(58, 102, 109);
 }
 
 body {
@@ -50,7 +50,12 @@ h1 {
   visibility: hidden;
 }
 
+.no-interaction {
+  pointer-events: none;
+}
+
 input[type=submit], button {
+  cursor: pointer;
   background-color: var(--btn-color);
   color: var(--light-color);
   border: none;
@@ -166,7 +171,6 @@ input[type=submit], button {
   width: 170px;
   border-radius: 30px;
   font-size: 1.1rem;
-  cursor: pointer;
 }
 
 .book:hover .actions-container {

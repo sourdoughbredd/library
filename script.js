@@ -80,10 +80,18 @@ function toggleReadBtnPressed(bookDiv, book) {
     }
 }
 
+// Callback function when user presses the add book button
+function addBookBtnPressed() {
+    disableCardContainer();
+    addBookFormContainer.classList.remove('hidden');
+}
+
 // Callback function when user presses submit button on the add book form
 function submitBookBtnPressed(event) {
+    // Check form validity first
     const form = event.target.closest('form'); 
     if (!form.checkValidity()) {
+        // Return control to the browser to warn of invalidities
         return;
     }
     // Collect form info entered by user
@@ -95,6 +103,7 @@ function submitBookBtnPressed(event) {
     addBookToLibrary(title, author, pages, isRead);
     resetAddBookForm();
     // event.preventDefault(); // Prevent default behavior of submit button (refreshes page)
+    enableCardContainer();
 }
 
 // Function to reset the add book form (clear fields and hide)
@@ -103,7 +112,16 @@ function resetAddBookForm() {
     addBookFormContainer.querySelector('form').reset();
 }
 
-// Event listeners for the add book form buttons
-addBookBtn.addEventListener('click', () => addBookFormContainer.classList.remove('hidden'));
-submitBookBtn.addEventListener('click', submitBookBtnPressed);
+// Enables interaction with items in the card container
+function enableCardContainer(){
+    cardContainer.classList.remove('no-interaction');
+}
 
+// Disables interaction with items in the card container
+function disableCardContainer(){
+    cardContainer.classList.add('no-interaction');
+}
+
+// Event listeners for the add book form buttons
+addBookBtn.addEventListener('click', addBookBtnPressed);
+submitBookBtn.addEventListener('click', submitBookBtnPressed);
