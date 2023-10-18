@@ -82,6 +82,10 @@ function toggleReadBtnPressed(bookDiv, book) {
 
 // Callback function when user presses submit button on the add book form
 function submitBookBtnPressed(event) {
+    const form = event.target.closest('form'); 
+    if (!form.checkValidity()) {
+        return;
+    }
     // Collect form info entered by user
     title = addBookFormContainer.querySelector('#title-in').value;
     author = addBookFormContainer.querySelector('#author-in').value;
@@ -90,18 +94,16 @@ function submitBookBtnPressed(event) {
     // Add book to library
     addBookToLibrary(title, author, pages, isRead);
     resetAddBookForm();
-    event.preventDefault(); // Prevent default behavior of submit button (refreshes page)
+    // event.preventDefault(); // Prevent default behavior of submit button (refreshes page)
 }
 
 // Function to reset the add book form (clear fields and hide)
 function resetAddBookForm() {
-    addBookFormContainer.querySelector('form').reset();
     addBookFormContainer.classList.add('hidden');
+    addBookFormContainer.querySelector('form').reset();
 }
 
 // Event listeners for the add book form buttons
 addBookBtn.addEventListener('click', () => addBookFormContainer.classList.remove('hidden'));
 submitBookBtn.addEventListener('click', submitBookBtnPressed);
 
-addBookToLibrary('asdda', 'asdasd', 100, true);
-addBookToLibrary('asdda', 'asdasd', 100, false);
