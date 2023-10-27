@@ -9,17 +9,20 @@ const closeFormBtn = document.querySelector('.close-button');
 let myLibrary = [];
 let nextId = 0; // unique ID for each book
 
-// Book object
-function Book(id, title, author, pages, isRead) {
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-    this.info = () => {
-        const readStr = haveRead ? 'already read' : 'not read yet';
-        return `${title} by ${author}, ${pages} pages, ${readStr}.`;
-    };
+// Book Class
+class Book {
+    constructor(id, title, author, pages, isRead) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+    }
+
+    info() {
+        const readStr = this.isRead ? 'already read' : 'not read yet';
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${readStr}.`;
+    }
 }
 
 // Adds a book to the library and displays it
